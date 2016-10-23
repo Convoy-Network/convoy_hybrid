@@ -1,0 +1,30 @@
+		{{> header}}
+		{{> sidemenu}}
+
+		<section class="posts first-section">
+		{{# each data.pool}}
+			
+			{{# if columna}}
+				<article class="grid-item normal columna">
+					<a class="grid-link hook single-column"  data-id="{{ID}}" >
+						{{# if thumb_url}}
+							<div class="img-wrapper"><img src="{{thumb_url}}"></div>
+						{{/ if}}
+						<div class="art-title"><span>{{title}}</span></div>
+						<div class="art-descr">{{excerpt}}</div>
+					</a>
+				</article>
+			{{/ if }}
+
+			{{# if podcast}}
+				<article data-id="{{ID}}" class="grid-item hook single-podcast">
+					<div class="pod-img">
+						<img src="{{thumb_url}}">
+						<span>{{programa}} - {{title}}</span>
+					</div>
+					<div class="pod-title">{{excerpt}}</div>
+				</article>
+			{{/ if }}
+
+		{{/ each }}
+		</section>

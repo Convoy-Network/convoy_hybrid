@@ -1,0 +1,29 @@
+
+{{> header}}
+{{> sidemenu}}
+
+<section class="podcast first-section">
+	<div class="pod-img">
+		<img src="{{data.cover}}">
+		<span>{{data.programa}}</span>
+	</div>
+	<div class="pod-info">
+		<div class="encabezado" id="insert_podcast_title"></div>
+		<div class="autor" id="insert_podcast_author">{{data.authors}}</div>
+		<a class="botonero" href="#">SHUFFLE</a>
+		<a class="botonero" href="#" onclick="window.plugins.socialsharing.share('Compartir', null, null, '{{web_url}}')">COMPARTIR</a>
+	</div>
+	<ul class="playlist">
+		
+		{{# each data.episodes.pool}}
+			<li>
+				<div data-id="{{ID}}" data-stream="{{stream}}" data-episode="{{title}}" data-authors="{{authors}}" data-show="{{programa}}" class="episodio {{# playing}}activo{{/ playing}}">
+					<span>{{inc @index}}</span>{{title}}
+					<i class="material-icons playing hidden">volume_up</i>
+				</div>
+				<div class="tiempo">{{duration}}</div>
+			</li>
+		{{/ each}}
+
+	</ul>
+</section>
