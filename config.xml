@@ -1,11 +1,11 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.airelibre.app" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <name>AireLibre</name>
+<widget id="com.convoy.app" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>Convoy</name>
     <description>
-        A sample Apache Cordova application that responds to the deviceready event.
+        Convoy hybrid application
     </description>
-    <author email="john@tallerdecodigo.com" href="http://tallerdecodigo.com">
-        John Falcon for TDC
+    <author email="john@codejoint.io" href="http://codejoint.io">
+        John Falcon for Convoy
     </author>
     <content src="index.html" />
     <plugin name="cordova-plugin-whitelist" spec="1" />
@@ -24,7 +24,7 @@
     <platform name="android">
         <allow-intent href="market:*" />
         <allow-navigation href="http://*" />
-        <allow-navigation href="http://airelibre.devtdc.online/*" />
+        <allow-navigation href="http://convoynetwork.com/*" />
     </platform>
     <platform name="ios">
         <allow-intent href="itms:*" />
