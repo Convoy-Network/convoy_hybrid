@@ -22,15 +22,14 @@ function requestHandlerAPI(){
 	var context = this;
 	window.sdk_app_context = null;
 	/* Production API URL */
-	window.api_base_url = "http://airelibre.devtdc.online/rest/v1/";
+	window.api_base_url = "https://convoynetwork.com/ws/";
 	/* Development local API URL */
-	// window.api_base_url = "http://localhost/airelibre/rest/v1/";
-	// window.api_base_url = "http://airelibre.dev/rest/v1/";
+	window.api_base_url = "http://webapp.convoy.dev/ws/";
 	
 	this.ls = window.localStorage;
 	/* Constructor */
 	this.construct = function(app_context){
-					console.log('Initialized rest API AireLibre sdk v1.2');
+					console.log('Initialized rest API Convoy sdk v1.2');
 					if(this.ls.getItem('request_token')) this.token = this.ls.getItem('request_token');
 					sdk_app_context = app_context;
 					/* For chaining purposes ::) */
@@ -158,7 +157,7 @@ function requestHandlerAPI(){
 																user_profile: 	data.profile_url,
 															};
 															console.log(myobject);
-											this.ls.setItem('airelibre_log_info', 	JSON.stringify(myobject));
+											this.ls.setItem('convoy_log_info', 	JSON.stringify(myobject));
 											/* Also save user ME info */
 											$.getJSON(api_base_url+data.user_login+'/me/')
 											 .done(function(response){
@@ -220,10 +219,10 @@ function requestHandlerAPI(){
 							if(this.token !== undefined || this.token !== ''){
 
 								console.log("Looks like you already have a token, let's check if it is valid");
-								var airelibre_log_info = (typeof this.ls.getItem('airelibre_log_info') != undefined) ? JSON.parse(this.ls.getItem('airelibre_log_info')) : null;
-								if(!airelibre_log_info) return false;
+								var convoy_log_info = (typeof this.ls.getItem('convoy_log_info') != undefined) ? JSON.parse(this.ls.getItem('convoy_log_info')) : null;
+								if(!convoy_log_info) return false;
 
-									var user 		= airelibre_log_info.user_id;
+									var user 		= convoy_log_info.user_id;
 									var data_object =   {
 															user_id : user, 
 															request_token : apiRH.get_request_token(),

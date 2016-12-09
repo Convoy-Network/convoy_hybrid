@@ -75,7 +75,7 @@ window.initializeEvents = function(){
 				var response = apiRH.logOut({user_login : user, request_token : apiRH.get_request_token() });
 				if(response.success){
 					app.toast('Session ended, see you soon!');
-						app.ls.removeItem('airelibre_log_info');
+						app.ls.removeItem('convoy_log_info');
 						app.ls.removeItem('request_token');
 						app.ls.removeItem('me.logged');
 						app.ls.removeItem('me');

@@ -26,7 +26,7 @@
 			app.registerHelpers();
 			/* localStorage init */
 			this.ls 		= window.localStorage;
-			var log_info 	= JSON.parse(this.ls.getItem('airelibre_log_info'));
+			var log_info 	= JSON.parse(this.ls.getItem('convoy_log_info'));
 			var me_info 	= JSON.parse(this.ls.getItem('me'));
 							window.user 		= (log_info) ? log_info.user_login 	: '';
 							window.user_display = (me_info)  ? me_info.first_name+' '+me_info.last_name : window.user;
@@ -36,27 +36,27 @@
 			if(log_info)
 				loggedIn = true;
 
-			/* Check if has any token */
-			if(apiRH.has_token()){
-				/* Check if has a valid token */
-				var response = apiRH.has_valid_token();
-				if(response){
-					var data_id = $(this).data('id');
-					console.log('You okay, now you can start making calls');
-					/* Take the user to it's timeline */
-					var is_home = window.is_home;
-					if(window.is_login)
-						window.location.assign('home.html');
-					return;
-				}else{
-					/* Token is not valid, user needs to authenticate */
-					console.log("Your token is not valid anymore (or has not been validated yet)");
-					return;
-				}
-			}
+			/*----------------------- Routing user accordingly ---------------------------*/
+			if(is_login){
+				console.log('You okay, now you can start making calls');
+				/* Take the user to it's timeline */
+				loggedIn = true;
+				var is_access 	= window.is_access;
+				var is_feed 	= window.is_feed;
+				_user 			= JSON.parse( app.keeper.getItem('user') );
+				
+				if(!is_login){
 
-			/* Requesting passive token if no token is previously stored */
-			console.log("Token::: "+apiRH.request_token().get_request_token());
+					return app.render_login();
+				}
+				_user = JSON.parse( app.keeper.getItem('user') );
+				if(window.is_home)
+					return app.render_home();
+				return;
+			}
+			return app.render_login();
+			/*-------------------- Code below this line won't run ------------------------*/
+			
 		},
 		registerCompiledPartials: function() {
 			console.log("Register pre compiled partials");
@@ -131,14 +131,14 @@
 			* | |_| / ___ \ |_| | |_| | | |
 			*  \___/_/   \_\__,_|\__|_| |_|
 			*/                              
-			try{
-				OAuth.initialize('JjzKpzscqxZEKNapUXCX_1ZtmfM');
-				console.log("Initialized Oauth");
-			}
-			catch(err){
-				app.toast("Oauth error ocurred");
-				console.log('OAuth initialize error: ' + err);
-			}
+			// try{
+			// 	OAuth.initialize('JjzKpzscqxZEKNapUXCX_1ZtmfM');
+			// 	console.log("Initialized Oauth");
+			// }
+			// catch(err){
+			// 	app.toast("Oauth error ocurred");
+			// 	console.log('OAuth initialize error: ' + err);
+			// }
 			var backButtonElement = document.getElementById("backBtn");
 			if(backButtonElement)
 				backButtonElement.addEventListener("click", app.onBackButton, false);
